@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tiki</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+        <script src="https://kit.fontawesome.com/6fa215a695.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="javascripts/tiki.js" defer></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <header>
+                <div id="upper_header">
+                    <img src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png" alt="Tiki Logo" id="img_logo" v-on:click="selected_page='home_page'">
+                    <i id="menu_logo" class="fas fa-bars" v-on:click="selected_page='custormer_list'"></i>
+                    <div id="menu">
+                        <a href="#">Menu</a><br>
+                        <a href="#">Products<i class="fas fa-caret-down"></i></a>
+                        <div class="product_options">
+                            <ul>
+                                <li><i class="fas fa-mobile-alt"></i>Mobile Phone - Tablet</li>
+                                <li><i class="fas fa-laptop"></i>Laptop - IT Device</li>
+                                <li><i class="fas fa-tshirt"></i>Fashion -  Accessories</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search">
+                    <input type="text" id="search_bar" placeholder="Search for product, category or brand...">
+                    <button id="search_btn"><i class="fas fa-search"></i>Search</button>
+                    </div>
+                    <i id="login_logo" class="far fa-user" v-on:click="selected_page='profile'"></i>
+                    <div class="login" v-on:click="selected_page='tiki_login'">
+                        <a href="#" id="login_signup">Login/ Signup</a><br>
+                        <a href="#" id="account">Account<i class="fas fa-caret-down"></i></a>
+                        <div class="login_options">
+                            <ul>
+                                <li>Login</li>
+                                <li>Signup</li>
+                                <li><i class="fab fa-facebook-f"></i>Login with Facebook</li>
+                                <li><i class="fab fa-google"></i>Login with Google</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <i id="shopping_logo" class="fas fa-shopping-cart"></i>
+                    <div id="shopping" v-on:click="selected_page='history'" >
+                        <a href="#">Shopping List</a>
+                    </div>
+                    <!--<div id="map_icon" v-on:click="selected_page='map'" >-->
+                    <!--    <a href="#">Map</a>-->
+                    <!--</div>-->
+                    <button v-on:click="logout()" id="logout_btn">Log out</button>
+                </div>
+                <div class="lower_header">
+                    <div class="nav_bar">
+                    <img src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png" alt="Freeship Logo" id="freeship_logo">
+                        <ul>
+                            <li>All products</li>
+                            <li>Vegetable</li>
+                            <li>Meat</li>
+                            <li>Frozen food</li>
+                            <li>Fruit</li>
+                            <li>Seafood</li>
+                            <li>Rice</li>
+                            <div id="trade">
+                            <button id="trade_btn" ><i class="fas fa-store"></i>Trading with Tiki</button>
+                            </div>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </header>
+
+
+            <!--HOME PAGE-->
+            <div id="home_page" v-if="selected_page==='home_page'">
+            <div id="tiki_promo">
+            <div class="slideshow">
+                <img id="tiki_left_img" class="mySlides" src="/images/tiki1.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki2.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki3.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki4.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki5.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki6.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki7.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki8.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki9.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki10.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki11.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki12.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki13.webp" style="width:100%">
+                <img class="mySlides" src="/images/tiki14.webp" style="width:100%">
+                <a class="prev" onclick="plusDivs(-1)">&#10094;</a>
+                <a class="next" onclick="plusDivs(1)">&#10095;</a>
+            </div>
+                <img id="tiki_right_img" src="/images/tiki_right.webp">
+            </div>
+            <div id="tiki_promo_2">
+                <img id="side_img_1" src="/images/tiki_bep.webp" style="width:100%">
+                <img id="main_img" src="/images/tiki_samsung.webp" style="width:100%">
+                <img id="side_img_2" src="/images/tiki_club.webp" style="width:100%">
+            </div>
+            <div id="tiki_icon">
+                <div class="icon_text">
+                <img class="icons" src="/images/icon1.webp">
+                <span>Sale code</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon2.webp">
+                <span>Online Market</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon3.webp">
+                <span>Service</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon4.webp">
+                <span>Member</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon5.webp">
+                <span>50% Sale</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon6.webp">
+                <span>15% Refund</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon7.webp">
+                <span>Payment Sale</span>
+                </div>
+                <div class="icon_text">
+                <img class="icons" src="/images/icon8.webp">
+                <span>Shipping</span>
+                </div>
+            </div>
+
+            <div id="tiki_promo_3">
+                <img src="/images/blue_img1.webp" class="blue_img">
+                <img src="/images/blue_img2.webp" class="blue_img">
+                <img src="/images/blue_img3.webp" class="blue_img">
+                <img src="/images/blue_img4.webp" class="blue_img">
+            </div>
+
+            <!--<div id="tiki_promo_4">-->
+            <!--    <div class="slideshow">-->
+            <!--        <div class="slideshow_2">-->
+            <!--            <img src="/images/left1.webp" class="tikislides">-->
+            <!--            <img src="/images/right1.webp" class="tikislides">-->
+            <!--        </div>-->
+            <!--        <div class="slideshow_2">-->
+            <!--            <img src="/images/left2.webp" class="tikislides">-->
+            <!--            <img src="/images/right2.webp" class="tikislides">-->
+            <!--        </div>-->
+            <!--        <a class="prev" onclick="plusDivs_2(-1)">&#10094;</a>-->
+            <!--        <a class="next" onclick="plusDivs_2(1)">&#10095;</a>-->
+            <!--    </div>-->
+            <!--</div>-->
+
+            <div id="tiki_promo_5">
+                <img src="/images/brand1.webp" class="brand_promo">
+                <img src="/images/brand2.webp" class="brand_promo">
+                <img src="/images/brand3.webp" class="brand_promo">
+                <img src="/images/brand4.webp" class="brand_promo">
+                <img src="/images/brand5.webp" class="brand_promo">
+                <img src="/images/brand6.webp" class="brand_promo">
+            </div>
+
+            <div id="tiki_promo_6">
+                <div id="tiki_promo_6_header">
+                    <p>Special Products</p>
+                </div>
+                <div id="upper_row">
+                    <div class="icon_text" v-on:click="selected_page='purchase_item'">
+                        <img src="/images/product1.webp">
+                        <span>Vegetable</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product2.webp">
+                        <span>Fresh Food</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product3.webp">
+                        <span>Sneakers</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product4.webp">
+                        <span>Backpack</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product5.webp">
+                        <span>Self-help Books</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product6.webp">
+                        <span>Short Stories</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product7.webp">
+                        <span>Local Fruit</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product8.webp">
+                        <span>Organic Vegetable</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product9.webp">
+                        <span>Smartphone</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product10.webp">
+                        <span>Meat</span>
+                    </div>
+                </div>
+                <div id="lower_row">
+                    <div class="icon_text">
+                        <img src="/images/product11.webp">
+                        <span>Fryer</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product12.webp">
+                        <span>Fast Food</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product13.webp">
+                        <span>Shaver</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product14.webp">
+                        <span>Dried Food</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product15.webp">
+                        <span>Frozen Seafood</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product16.webp">
+                        <span>Novel</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product17.webp">
+                        <span>Milk(UHT)</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product18.webp">
+                        <span>Frozen Food</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product19.webp">
+                        <span>Kitchen Utensil</span>
+                    </div>
+                    <div class="icon_text">
+                        <img src="/images/product20.webp">
+                        <span>Coffee</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tiki_promo_7">
+                <img src="/images/pic1.webp" class="pink_img">
+                <img src="/images/pic2.webp" class="pink_img">
+                <img src="/images/pic3.webp" class="pink_img">
+            </div>
+
+            <div id="tiki_promo_8">
+
+            </div>
+            </div>
+            <!--PURCHASE HISTORY-->
+             <table class="content-table" v-if="selected_page=='history'">
+                <thead>
+                    <tr>
+                        <th v-for="x in title">{{x}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="row in info">
+                        <td v-for="cell in row">{{cell}}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <!--PROFILE PAGE-->
+            <div class="container" v-if="selected_page==='profile'">
+            <div id="profile_left">
+                <img src="/images/avatar.png" alt="Avatar image">
+                <h3>{{person.first_name}} {{person.last_name}}</h3>
+                <p>username</p>
+                <button v-on:click="selected_service='profile'">PROFILE</button>
+                <button v-on:click="selected_service='edit'">EDIT</button>
+            </div>
+            <!--PROFILE-->
+            <div id="profile_right" v-if="selected_service==='profile'">
+                <div class="data">
+                    <div class="box_left">
+                        <div class="first_name">
+                            <h3>First Name</h3>
+                            <p>{{person.first_name}}</p>
+                        </div>
+                        <div class="dob">
+                            <h3>DOB</h3>
+                            <p>{{person.DOB}}</p>
+                        </div>
+                        <div class="exp">
+                            <h3>Class</h3>
+                            <p>{{person.experience}}</p>
+                            </div>
+                    </div>
+                    <div class="box_right">
+                        <div class="family_name">
+                            <h3>Family Name</h3>
+                            <p>{{person.last_name}}</p>
+                            </div>
+                        <div class="address">
+                            <h3>Address</h3>
+                            <p>{{person.address}}</p>
+                        </div>
+                        <div class="hobbies">
+                            <h3>Hobbies</h3>
+                            <p>{{person.hobbies}}</p>
+                            </div>
+                    </div>
+                </div>
+                <!--<div class="button">-->
+                <!--    <button>Submit</button>-->
+                <!--</div>-->
+            </div>
+            <!--EDITABLE-->
+                <div class="profile_right" v-if="selected_service==='edit'">
+
+                    <div class="data">
+                        <div class="box_left">
+                            <div class="first_name">
+                                <h3>First name</h3>
+                                <input type="text" placeholder="Enter your info" id="first_name" v-model="person.first_name">
+                            </div>
+                            <div class="dob">
+                                <h3>DOB</h3>
+                                <input type="text" placeholder="Enter your info" id="dob" v-model="person.DOB" >
+                            </div>
+                            <div class="exp">
+                                <h3>Experience</h3>
+                                <input type="text" placeholder="Enter your info" id="exp" v-model="person.experience">
+                            </div>
+
+                        </div>
+
+                        <div class="box_right">
+                            <div class="family_name">
+                                <h3>Family name</h3>
+                                <input type="text" placeholder="Enter your info" id="family_name" v-model="person.last_name">
+                            </div>
+                            <div class="address">
+                                <h3>Address</h3>
+                                <input type="text" placeholder="Enter your info" id="address" v-model="person.address">
+                            </div>
+                            <div class="Hobbies">
+                                <h3>Hobbies</h3>
+                                <input type="text" placeholder="Enter your info" id="Hobbies" v-model="person.hobbies">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button v-on:click="selected_service='profile'">SUBMIT</button>
+                    </div>
+
+
+                </div>
+
+        </div>
+
+        <!--Tiki Login-->
+        <div id="tiki_login" v-if="selected_page==='tiki_login'">
+            <div class="third_parties">
+                <h4>To continue, log in to Tiki.</h4>
+                <div id="fb"><a href="#">FACEBOOK</a></div>
+                <div id="google"><a href="#">GOOGLE</a></div>
+                <div id="zalo"><a href="#">ZALO</a></div>
+
+            </div>
+
+            <div class="normal">
+                <h4>Email address or username</h4>
+                <input type="email" id="email" placeholder="Email address or username" class="input"  v-model='account.email'>
+
+                <h4>Password</h4>
+                <input type="password" id="password" placeholder="Password" class="input"  v-model='account.password'>
+
+                <a href="#" id="forgot_pw">Forgot your password?</a>
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+
+                <button id="login_btn"  v-on:click="login()">LOG IN</button>
+                <div style="clear: both"></div>
+                <p id="login_failed"></p>
+            </div>
+
+            <div class="no_account">
+                <h3>Don't have an account</h3>
+                <button id="signup_btn" v-on:click="selected_page='signup'">Sign up</button>
+                <div style="clear: both"></div>
+
+            </div>
+
+        </div>
+
+        <div class="signup" v-if="selected_page==='signup'">
+            <div class="third_parties">
+                <h4>Sign up with your email address</h4>
+            </div>
+            <div class="normal">
+                <h4>What's your email?</h4>
+                <input type="text" id="email" placeholder="Enter your email." class="input" v-model='sign_up.email'>
+
+                <h4>Create a username</h4>
+                <input type="text" id="text" placeholder="Enter your username." class="input" v-model='sign_up.username'>
+
+                <h4>Create a password</h4>
+                <input type="password" id="password" placeholder="Create a password." class="input" v-model='sign_up.password'>
+
+                <h4>What should we call you</h4>
+                <input type="text" id="fullname" placeholder="Enter a profile name." class="input" v-model='sign_up.fullname'>
+                <div><p>This appears on your profile.</p></div>
+
+                <h4>What is your first name?</h4>
+                <input type="text" id="first_name" placeholder="Enter your first name." class="input" v-model='sign_up.first_name'>
+
+                <h4>What is your last name?</h4>
+                <input type="text" id="last_name" placeholder="Enter your last name." class="input" v-model='sign_up.last_name'>
+
+                <h4>What's your date of birth?</h4>
+                <input type="date" id="dob" class="input" v-model='sign_up.dob'>
+
+                <h4>What is your address?</h4>
+                <input type="text" id="address" placeholder="Enter your address" class="input" v-model='sign_up.address'>
+
+                <h4>What is your phone number?</h4>
+                <input type="text" id="phone_number" placeholder="Enter your phone number" class="input" v-model='sign_up.'>
+
+                <!--<h4>What's your gender?</h4>-->
+
+                <!--<input type="radio" id="male">-->
+                <!--<label for="male">Male</label>-->
+
+                <!--<input type="radio" id="female">-->
+                <!--<label for="female">Female</label>-->
+
+                <!--<input type="radio" id="non-binary">-->
+                <!--<label for="non-binary">Non-binary</label>-->
+            </div>
+
+            <div class="no_account">
+                <button id="login_btn" v-on:click="sign_up_func()">Sign up</button>
+                <h3>Have an account? <a href="#" v-on:click="selected_page='tiki_login'">Log in</a>.</h3>
+                <div style="clear: both"></div>
+                <p id="signup_failed"></p
+
+            </div>
+        </div>
+
+        <div id="customer_list" v-if="selected_page==='customer_list'">
+        <h1 v-bind:class="{button_darkgreen: color==='darkgreen', button_yellow: color==='yellow'}">Customer List</h1>
+            <!--v-bind:class="{class_name: 'condition'}"-->
+            <!--sử dụng class_name khi thỏa điều kiện/ điều kiện đúng-->
+            <div class="form">
+                <label>Name</label>
+                <input type="text" name="person_name" placeholder="Enter your name: " v-model="person_2.name">
+                <br /><br />
+
+                <label>DOB</label><br />
+                <input type="date" name="person_dob" placeholder="DOB" v-model="person_2.DOB">
+                <br /><br />
+
+                <label>Nationality</label>
+                <input type="text" name="person_nation" placeholder="nation" v-model="person_2.nation">
+                <br /><br />
+
+                <button v-on:click="add_person()">ADD PERSON</button>
+
+            </div>
+
+            <div class="list">
+                <table class="content-table-2">
+                    <thead>
+                        <tr>
+                            <th v-for="x in title_2">{{x}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr v-for="person in people">
+                            <td v-for="y in person">{{y}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <button v-on:click="change_color()">Change heading's color</button>
+            </div>
+        </div>
+
+
+
+        <!--MAP-->
+            <div v-show="selected_page==='map'" id="map"></div>
+        <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+  <!-- Section: Social media -->
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Tiki Corporation
+          </h6>
+          <p>
+            Tiki.vn is the fastest-growing retail company in Vietnam and is well-positioned to be an industry winner.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Technology
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">HTML5</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Google Analytics</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">jQuery</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Big Data</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> 52 Ut Tich Street, Ward 4, Tan Binh District, Ho Chi Minh City</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            security@tiki.vn
+          </p>
+          <p><i class="fas fa-phone me-3"></i> 1900 - 6035</p>
+          <p><i class="fas fa-print me-3"></i> 0309532909 </p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Tiki.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>
+
