@@ -12,12 +12,12 @@
         <script src="javascripts/tiki.js" defer></script>
     </head>
 
-    <body>
+    <body onload ="vueinst.get_user_info()">
         <div id="app">
             <header>
                 <div id="upper_header">
                     <img src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png" alt="Tiki Logo" id="img_logo" v-on:click="selected_page='home_page'">
-                    <i id="menu_logo" class="fas fa-bars" v-on:click="selected_page='custormer_list'"></i>
+                    <i id="menu_logo" class="fas fa-bars"></i>
                     <div id="menu">
                         <a href="#">Menu</a><br>
                         <a href="#">Products<i class="fas fa-caret-down"></i></a>
@@ -291,9 +291,8 @@
             <div class="container" v-if="selected_page==='profile'">
             <div id="profile_left">
                 <img src="images/avatar.png" alt="Avatar image">
-                <h3>{{person.first_name}} {{person.last_name}}</h3>
-                <p>username</p>
-                <button v-on:click="selected_service='profile'">PROFILE</button>
+                <h3>{{sign_up.first_name}} {{sign_up.last_name}}</h3>
+                <button v-on:click="selected_service='profile'; get_user_info()">PROFILE</button>
                 <button v-on:click="selected_service='edit'">EDIT</button>
             </div>
             <!--PROFILE-->
@@ -302,29 +301,29 @@
                     <div class="box_left">
                         <div class="first_name">
                             <h3>First Name</h3>
-                            <p>{{person.first_name}}</p>
+                            <p>{{sign_up.first_name}}</p>
                         </div>
                         <div class="dob">
                             <h3>DOB</h3>
-                            <p>{{person.DOB}}</p>
+                            <p>{{sign_up.dob}}</p>
                         </div>
-                        <div class="exp">
-                            <h3>Class</h3>
-                            <p>{{person.experience}}</p>
+                        <div class="email">
+                            <h3>Email</h3>
+                            <p>{{sign_up.email}}</p>
                             </div>
                     </div>
                     <div class="box_right">
                         <div class="family_name">
                             <h3>Family Name</h3>
-                            <p>{{person.last_name}}</p>
+                            <p>{{sign_up.last_name}}</p>
                             </div>
                         <div class="address">
                             <h3>Address</h3>
-                            <p>{{person.address}}</p>
+                            <p>{{sign_up.address}}</p>
                         </div>
-                        <div class="hobbies">
-                            <h3>Hobbies</h3>
-                            <p>{{person.hobbies}}</p>
+                        <div class="phone_number">
+                            <h3>Phone number</h3>
+                            <p>{{sign_up.phone_number}}</p>
                             </div>
                     </div>
                 </div>
@@ -339,15 +338,15 @@
                         <div class="box_left">
                             <div class="first_name">
                                 <h3>First name</h3>
-                                <input type="text" placeholder="Enter your info" id="first_name" v-model="person.first_name">
+                                <input type="text" placeholder="Enter your info" id="first_name" v-model="sign_up.first_name">
                             </div>
                             <div class="dob">
                                 <h3>DOB</h3>
-                                <input type="text" placeholder="Enter your info" id="dob" v-model="person.DOB" >
+                                <input type="date" placeholder="Enter your info" id="dob" v-model="sign_up.dob" >
                             </div>
-                            <div class="exp">
-                                <h3>Experience</h3>
-                                <input type="text" placeholder="Enter your info" id="exp" v-model="person.experience">
+                            <div class="email">
+                                <h3>Email</h3>
+                                <input type="text" placeholder="Enter your info" id="email" v-model="sign_up.email">
                             </div>
 
                         </div>
@@ -355,15 +354,15 @@
                         <div class="box_right">
                             <div class="family_name">
                                 <h3>Family name</h3>
-                                <input type="text" placeholder="Enter your info" id="family_name" v-model="person.last_name">
+                                <input type="text" placeholder="Enter your info" id="family_name" v-model="sign_up.last_name">
                             </div>
                             <div class="address">
                                 <h3>Address</h3>
-                                <input type="text" placeholder="Enter your info" id="address" v-model="person.address">
+                                <input type="text" placeholder="Enter your info" id="address" v-model="sign_up.address">
                             </div>
-                            <div class="Hobbies">
-                                <h3>Hobbies</h3>
-                                <input type="text" placeholder="Enter your info" id="Hobbies" v-model="person.hobbies">
+                            <div class="phone_number">
+                                <h3>Phone number</h3>
+                                <input type="text" placeholder="Enter your info" id="phone_number" v-model="sign_up.phone_number">
                             </div>
 
                         </div>
@@ -418,32 +417,32 @@
             </div>
             <div class="normal">
                 <h4>What's your email?</h4>
-                <input type="text" id="email" placeholder="Enter your email." class="input" v-model='sign_up.email'>
+                <input type="text" id="email" placeholder="Enter your email." class="input" v-model='sign_up.email' required>
 
                 <h4>Create a username</h4>
-                <input type="text" id="text" placeholder="Enter your username." class="input" v-model='sign_up.username'>
+                <input type="text" id="text" placeholder="Enter your username." class="input" v-model='sign_up.username' required>
 
                 <h4>Create a password</h4>
-                <input type="password" id="password" placeholder="Create a password." class="input" v-model='sign_up.password'>
+                <input type="password" id="password" placeholder="Create a password." class="input" v-model='sign_up.password' required>
 
                 <h4>What should we call you</h4>
-                <input type="text" id="fullname" placeholder="Enter a profile name." class="input" v-model='sign_up.fullname'>
+                <input type="text" id="fullname" placeholder="Enter a profile name." class="input" v-model='sign_up.fullname' required>
                 <div><p>This appears on your profile.</p></div>
 
                 <h4>What is your first name?</h4>
-                <input type="text" id="first_name" placeholder="Enter your first name." class="input" v-model='sign_up.first_name'>
+                <input type="text" id="first_name" placeholder="Enter your first name." class="input" v-model='sign_up.first_name' required>
 
                 <h4>What is your last name?</h4>
-                <input type="text" id="last_name" placeholder="Enter your last name." class="input" v-model='sign_up.last_name'>
+                <input type="text" id="last_name" placeholder="Enter your last name." class="input" v-model='sign_up.last_name' required>
 
                 <h4>What's your date of birth?</h4>
-                <input type="date" id="dob" class="input" v-model='sign_up.dob'>
+                <input type="date" id="dob" class="input" v-model='sign_up.dob' required>
 
                 <h4>What is your address?</h4>
-                <input type="text" id="address" placeholder="Enter your address" class="input" v-model='sign_up.address'>
+                <input type="text" id="address" placeholder="Enter your address" class="input" v-model='sign_up.address' required>
 
                 <h4>What is your phone number?</h4>
-                <input type="text" id="phone_number" placeholder="Enter your phone number" class="input" v-model='sign_up.phone_number'>
+                <input type="text" id="phone_number" placeholder="Enter your phone number" class="input" v-model='sign_up.phone_number' required>
 
                 <!--<h4>What's your gender?</h4>-->
 
@@ -461,29 +460,37 @@
                 <button id="login_btn" v-on:click="sign_up_func()">Sign up</button>
                 <h3>Have an account? <a href="#" v-on:click="selected_page='tiki_login'">Log in</a>.</h3>
                 <div style="clear: both"></div>
-                <p id="signup_failed"></p
+                <p id="signup_failed"></p>
 
             </div>
         </div>
 
         <div id="customer_list" v-if="selected_page==='customer_list'">
-        <h1 v-bind:class="{button_darkgreen: color==='darkgreen', button_yellow: color==='yellow'}">Customer List</h1>
             <!--v-bind:class="{class_name: 'condition'}"-->
             <!--sử dụng class_name khi thỏa điều kiện/ điều kiện đúng-->
             <div class="form">
-                <label>Name</label>
-                <input type="text" name="person_name" placeholder="Enter your name: " v-model="person_2.name">
+                <label>Quantity</label>
+                <input type="number" name="quantity" placeholder="Enter product's quantity" v-model="product.quantity">
                 <br /><br />
 
-                <label>DOB</label><br />
-                <input type="date" name="person_dob" placeholder="DOB" v-model="person_2.DOB">
+                <label for="service">Service</label>
+                <select id="shipping_service" v-model="product.shipping_service">
+                <option value="TikiNow">TikiNow</option>
+                <option value="TikiFast">TikiFast</option>
+                <option value="TikiDropship">TikiDropship</option>
+                <option value="Freeship+">Freeship+</option>
+                </select>
                 <br /><br />
 
-                <label>Nationality</label>
-                <input type="text" name="person_nation" placeholder="nation" v-model="person_2.nation">
+                <label>Address</label>
+                <input type="text" name="address" placeholder="Enter shipping address" v-model="product.address">
                 <br /><br />
 
-                <button v-on:click="add_person()">ADD PERSON</button>
+                <label>Notes</label>
+                <input type="text" name="notes" placeholder="Enter your notes" v-model="product.note">
+                <br /><br />
+
+                <button v-on:click="add_person()">ADD ITEM</button>
 
             </div>
 
@@ -502,16 +509,115 @@
                     </tbody>
 
                 </table>
-            </div>
+                </div>
+                </div>
+            <div class="container" v-if="selected_page==='purchase_item'">
+<div class="row">
+    <div class="col-md-3">
+        <div class="ibox">
+            <div class="ibox-content product-box">
+                <div class="product-imitation" id="banana">
+                </div>
+                <div class="product-desc">
+                    <span class="product-price">
+                        $1.99
+                    </span>
+                    <small class="text-muted">Fruits</small>
+                    <a href="#" class="product-name">Banana</a>
 
-            <button v-on:click="change_color()">Change heading's color</button>
+                    <div class="small m-t-xs">
+                         For fresh products, the actual weight may vary by about 10%.
+                    </div>
+                    <div class="m-t text-righ">
+
+                        <a href="#" class="btn btn-xs btn-outline btn-primary" v-on:click="selected_page='customer_list'">Add to cart<i class="fa fa-long-arrow-right"></i> </a>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="ibox">
+            <div class="ibox-content product-box">
+
+                <div class="product-imitation" id="orange">
+                </div>
+                <div class="product-desc">
+                    <span class="product-price">
+                        $1.99
+                    </span>
+                    <small class="text-muted">Fruits</small>
+                    <a href="#" class="product-name"> Orange</a>
+
+
+
+                    <div class="small m-t-xs">
+                        For fresh products, the actual weight may vary by about 10%.
+                    </div>
+                    <div class="m-t text-righ">
+
+                        <a href="#" class="btn btn-xs btn-outline btn-primary">Add to cart <i class="fa fa-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="ibox">
+            <div class="ibox-content product-box active">
+
+                <div class="product-imitation" id="watermelon">
+                </div>
+                <div class="product-desc">
+                    <span class="product-price">
+                        $2.99
+                    </span>
+                    <small class="text-muted">Fruits</small>
+                    <a href="#" class="product-name">Watermelon</a>
+
+
+
+                    <div class="small m-t-xs">
+                        For fresh products, the actual weight may vary by about 10%.
+                    </div>
+                    <div class="m-t text-righ">
+
+                        <a href="#" class="btn btn-xs btn-outline btn-primary">Add to cart <i class="fa fa-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="ibox">
+            <div class="ibox-content product-box">
+
+                <div class="product-imitation" id="avocado">
+                </div>
+                <div class="product-desc">
+                    <span class="product-price">
+                        $2.99
+                    </span>
+                    <small class="text-muted">Fruits</small>
+                    <a href="#" class="product-name">Avocado</a>
+                    <div class="small m-t-xs">
+                        For fresh products, the actual weight may vary by about 10%.
+                    </div>
+                    <div class="m-t text-righ">
+                        <a href="#" class="btn btn-xs btn-outline btn-primary">Add to cart <i class="fa fa-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
         </div>
 
 
 
         <!--MAP-->
-            <div v-show="selected_page==='map'" id="map"></div>
+            <!-- <div v-show="selected_page==='map'" id="map"></div> -->
         <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
   <!-- Section: Social media -->
@@ -637,9 +743,9 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 
 
     </body>
