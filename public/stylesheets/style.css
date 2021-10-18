@@ -910,3 +910,7 @@ table.shoping-cart-table tr td:last-child {
     background-image: url(/images/avocado.jpg);
     background-size: cover;
 }
+
+img {
+cursor: pointer;
+}
